@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alamdar Joinery Mills</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2e3b4e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+    }
+    .info {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #0056b3;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .gallery img:hover {
+      transform: scale(1.02);
+    }
+    #imageModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #imageModal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Alamdar Joinery Mills</h1>
+  <p>Devbugh Kunzer | Near Jamia Masjid Devbugh</p>
+</header>
+
+<div class="container">
+
+  <div class="info">
+    <h2>📞 Contact Us</h2>
+    <p><strong>Owner:</strong> Farooq Ahmad Sheikh</p>
+    <p><strong>Phone:</strong> 9906761243, 84918465</p>
+    <p><strong>WhatsApp:</strong> 9906761243</p>
+    <p><strong>Email:</strong> <a href="mailto:israrfarooq68@gmail.com">israrfarooq68@gmail.com</a></p>
+    <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/43vUZ6NS8ZTfUXL59" target="_blank">View on Google Maps</a></p>
+    <p><strong>Opening Hours:</strong> Saturday to Thursday, 9am – 6am</p>
+  </div>
+
+  <div class="info">
+    <h2>🛒 Book Your Order</h2>
+    <form onsubmit="submitBooking(event)">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="address">Address:</label>
+      <textarea id="address" required></textarea>
+
+      <label for="item">What do you want to order?</label>
+      <select id="item" required>
+        <option value="">Select an item</option>
+        <option value="Glass Window">Glass Window (₹850/800/750)</option>
+        <option value="Wiremesh Window">Wiremesh Window (₹900/850/800)</option>
+        <option value="Window Frame">Window Frame (₹1050–₹1100 per ft)</option>
+        <option value="Custom Timber">Custom Timber - Top Quality</option>
+      </select>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required>
+
+      <button type="submit">Submit Booking</button>
+    </form>
+    <p id="message" style="color: green;"></p>
+  </div>
+
+  <div class="info">
+    <h2>🖼️ Our Recent Work</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1582582494700-5f12edb30f6f?auto=format&fit=crop&w=800&q=80" alt="Wood Window Frame" onclick="openImage(this.src)">
+      <img src="https://images.unsplash.com/photo-1615874959474-d609969a2fa3?auto=format&fit=crop&w=800&q=80" alt="Custom Bed" onclick="openImage(this.src)">
+      <img src="https://images.unsplash.com/photo-1586201375761-83865001e17b?auto=format&fit=crop&w=800&q=80" alt="Carved Door" onclick="openImage(this.src)">
+      <img src="https://images.unsplash.com/photo-1598300182872-80c3aa655fa2?auto=format&fit=crop&w=800&q=80" alt="Wardrobe" onclick="openImage(this.src)">
+      <img src="https://images.unsplash.com/photo-1622396636133-ba9da14346f7?auto=format&fit=crop&w=800&q=80" alt="Joinery Furniture" onclick="openImage(this.src)">
+    </div>
+  </div>
+
+</div>
+
+<!-- Image Modal -->
+<div id="imageModal" onclick="closeImage()">
+  <img id="popupImage" src="">
+</div>
+
+<script>
+  function submitBooking(event) {
+    event.preventDefault();
+    const name = document.getElementById("name").value;
+    const address = document.getElementById("address").value;
+    const item = document.getElementById("item").value;
+    const phone = document.getElementById("phone").value;
+
+    const message = `Booking Confirmed!\n\nName: ${name}\nAddress: ${address}\nItem: ${item}\nPhone: ${phone}`;
+    alert(message);
+    document.getElementById("message").innerText = "✅ Thank you! Your booking has been submitted.";
+  }
+
+  function openImage(src) {
+    document.getElementById("popupImage").src = src;
+    document.getElementById("imageModal").style.display = "flex";
+  }
+
+  function closeImage() {
+    document.getElementById("imageModal").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
